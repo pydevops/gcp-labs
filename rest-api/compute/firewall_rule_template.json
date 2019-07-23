@@ -1,0 +1,19 @@
+{
+    "name": "demo-allow-http",
+    "kind": "compute#firewall",
+    "sourceRanges": [
+      "0.0.0.0/0"
+    ],
+    "network": "${network}",
+    "targetTags": [
+      "http-server"
+    ],
+    "allowed": [
+      {
+        "IPProtocol": "tcp",
+        "ports": [
+          "80"
+        ]
+      }
+    ]
+  }

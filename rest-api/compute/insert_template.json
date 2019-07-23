@@ -1,0 +1,69 @@
+{
+    "kind": "compute#instance",
+    "name": "${instance_name}",
+    "zone": "projects/${project_id}/zones/${zone}",
+    "machineType": "${machine_type}",
+    "metadata": {
+        "kind": "compute#metadata",
+        "items": []
+    },
+    "tags": {
+        "items": [
+          "http-server"
+        ]
+      },    
+    "disks": [
+        {
+            "kind": "compute#attachedDisk",
+            "type": "PERSISTENT",
+            "boot": true,
+            "mode": "READ_WRITE",
+            "autoDelete": true,      
+            "deviceName": "${disk_name}",
+            "initializeParams": {
+                "sourceImage": "${machine_image}",
+                "diskType": "projects/${project_id}/zones/${zone}/diskTypes/pd-standard",
+                "diskSizeGb": "10"
+            }
+        }
+    ],
+    "canIpForward": false,
+    "deletionProtection": false,
+    "networkInterfaces": [
+        {
+            "kind": "compute#networkInterface",
+            "network": "${network}",
+            "subnetwork": "${subnet}",
+            "accessConfigs": [
+                {
+                    "kind": "compute#accessConfig",
+                    "name": "External NAT",
+                    "type": "ONE_TO_ONE_NAT",
+                    "networkTier": "PREMIUM"
+                }
+            ],
+            "aliasIpRanges": []
+        }
+    ],
+    "description": "",
+    "labels": {},
+    "scheduling": {
+        "preemptible": false,
+        "onHostMaintenance": "MIGRATE",
+        "automaticRestart": true,
+        "nodeAffinities": []
+    },
+    "serviceAccounts": [
+        {
+            "email": "${project_number}-compute@developer.gserviceaccount.com",
+            "scopes": [
+                "https://www.googleapis.com/auth/devstorage.read_only",
+                "https://www.googleapis.com/auth/logging.write",
+                "https://www.googleapis.com/auth/monitoring.write",
+                "https://www.googleapis.com/auth/servicecontrol",
+                "https://www.googleapis.com/auth/service.management.readonly",
+                "https://www.googleapis.com/auth/trace.append"
+            ]
+        }
+    ]
+}

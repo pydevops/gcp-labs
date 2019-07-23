@@ -1,0 +1,28 @@
+# regional MIG
+REGION=us-west1
+NETWORK=custom-vpc-1
+SUBNET=subnet-oregon
+MIG_NAME=nginx1-mig
+MIG_SIZE=3
+INSTANCE_TEMPLATE=nginx-private
+CONTAINER_IMAGE=gcr.io/cloud-marketplace/google/nginx1:1.15
+MACHINE_TYPE=f1-micro
+NETWORK_TAG=http-server
+HC_NAME=mig-http-check
+FW_NAME=allow-gcp-health-check
+
+# Network LB related
+TARGET_POOL=www-pool
+NLB_FW_RULE=allow-nginx-nlb
+NLB_ADDRESS=nlb-ip
+NLB_HC=nlb-http-check
+NLB_FR_RULE=allow-http
+
+
+# Layer 7 HTTP(S) related
+GLB_IP=lb-ip-1
+GLB_HC=http-basic-check
+URL_MAP=web-map
+BE_SVC=${URL_MAP}-be-svc
+TARGET_PROXY=http-lb-proxy
+GLB_FW_RULE=http-cr-rule

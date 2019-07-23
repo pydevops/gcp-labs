@@ -1,0 +1,90 @@
+POST https://www.googleapis.com/compute/v1/projects/pso-victory-cah/zones/us-west1-b/instances
+{
+  "kind": "compute#instance",
+  "name": "demo",
+  "zone": "projects/pso-victory-cah/zones/us-west1-b",
+  "machineType": "projects/pso-victory-cah/zones/us-west1-b/machineTypes/n1-standard-1",
+  "metadata": {
+    "kind": "compute#metadata",
+    "items": []
+  },
+  "tags": {
+    "items": [
+      "http-server"
+    ]
+  },
+  "disks": [
+    {
+      "kind": "compute#attachedDisk",
+      "type": "PERSISTENT",
+      "boot": true,
+      "mode": "READ_WRITE",
+      "autoDelete": true,
+      "deviceName": "demo",
+      "initializeParams": {
+        "sourceImage": "projects/debian-cloud/global/images/debian-9-stretch-v20180911",
+        "diskType": "projects/pso-victory-cah/zones/us-west1-b/diskTypes/pd-standard",
+        "diskSizeGb": "10"
+      }
+    }
+  ],
+  "canIpForward": false,
+  "networkInterfaces": [
+    {
+      "kind": "compute#networkInterface",
+      "subnetwork": "projects/pso-victory-cah/regions/us-west1/subnetworks/default",
+      "accessConfigs": [
+        {
+          "kind": "compute#accessConfig",
+          "name": "External NAT",
+          "type": "ONE_TO_ONE_NAT",
+          "networkTier": "PREMIUM"
+        }
+      ],
+      "aliasIpRanges": []
+    }
+  ],
+  "description": "",
+  "labels": {},
+  "scheduling": {
+    "preemptible": false,
+    "onHostMaintenance": "MIGRATE",
+    "automaticRestart": true,
+    "nodeAffinities": []
+  },
+  "deletionProtection": false,
+  "serviceAccounts": [
+    {
+      "email": "749745792983-compute@developer.gserviceaccount.com",
+      "scopes": [
+        "https://www.googleapis.com/auth/devstorage.read_only",
+        "https://www.googleapis.com/auth/logging.write",
+        "https://www.googleapis.com/auth/monitoring.write",
+        "https://www.googleapis.com/auth/servicecontrol",
+        "https://www.googleapis.com/auth/service.management.readonly",
+        "https://www.googleapis.com/auth/trace.append"
+      ]
+    }
+  ]
+}
+
+POST https://www.googleapis.com/compute/v1/projects/pso-victory-cah/global/firewalls
+{
+  "name": "default-allow-http",
+  "kind": "compute#firewall",
+  "sourceRanges": [
+    "0.0.0.0/0"
+  ],
+  "network": "projects/pso-victory-cah/global/networks/default",
+  "targetTags": [
+    "http-server"
+  ],
+  "allowed": [
+    {
+      "IPProtocol": "tcp",
+      "ports": [
+        "80"
+      ]
+    }
+  ]
+}

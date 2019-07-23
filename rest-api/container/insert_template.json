@@ -1,0 +1,52 @@
+{
+  "cluster": {
+    "name": "${cluster_name}",
+    "masterAuth": {
+      "username": "admin",
+      "clientCertificateConfig": {
+        "issueClientCertificate": true
+      }
+    },
+    "loggingService": "logging.googleapis.com",
+    "monitoringService": "monitoring.googleapis.com",
+    "network": "projects/${project_id}/global/networks/${custom_network}",
+    "addonsConfig": {
+      "httpLoadBalancing": {},
+      "kubernetesDashboard": {
+        "disabled": true
+      }
+    },
+    "subnetwork": "projects/${project_id}/regions/${region}/subnetworks/${custom_subnet}",
+    "nodePools": [
+      {
+        "name": "${node_pool_name}",
+        "config": {
+          "machineType": "${machine_type}",
+          "diskSizeGb": 100,
+          "oauthScopes": [
+            "https://www.googleapis.com/auth/devstorage.read_only",
+            "https://www.googleapis.com/auth/logging.write",
+            "https://www.googleapis.com/auth/monitoring",
+            "https://www.googleapis.com/auth/servicecontrol",
+            "https://www.googleapis.com/auth/service.management.readonly",
+            "https://www.googleapis.com/auth/trace.append"
+          ],
+          "imageType": "COS",
+          "diskType": "pd-standard"
+        },
+        "initialNodeCount": "${initial_node_count}",
+        "autoscaling": {},
+        "management": {
+          "autoRepair": true
+        },
+        "version": "${gke_version}"
+      }
+    ],
+    "networkPolicy": {},
+    "ipAllocationPolicy": {},
+    "masterAuthorizedNetworksConfig": {},
+    "privateClusterConfig": {},
+    "initialClusterVersion": "${gke_version}",
+    "location": "${zone}"
+  }
+}
