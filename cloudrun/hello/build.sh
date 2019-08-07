@@ -8,4 +8,5 @@ source "$PROJECT_ROOT/../.."/common/functions.sh
 go mod tidy
 go mod vendor
 
-gcloud builds submit --tag gcr.io/$PROJECT_ID/$APP:0.0.1 .
+# fake SHORT_SHA for testing
+gcloud builds submit --config cloudbuild.yaml --substitutions=_SVC_ACCOUNT=${SVC_ACCOUNT},SHORT_SHA=12345 .
