@@ -1,3 +1,8 @@
+# Check if gcloud is installed and on the path
+command -v gcloud >/dev/null 2>&1 || \
+  { echo >&2 "I require gcloud but it's not installed. Aborting.";exit 1; }
+
+
 # Check if all required variables are non-null
 # Globals:
 #   None
@@ -35,3 +40,14 @@ dependency_installed () {
 enable_project_api() {
   gcloud services enable "${2}" --project "${1}"
 }
+
+
+# set PROJECT_ID
+PROJECT_ID=$(gcloud config list project --format 'value(core.project)')
+if [ -z "${PROJECT_ID}" ]
+  then echo >&2 "I require default project is set but it's not. Aborting."; exit 1;
+fi
+
+# set PROJECT_NUMBER
+PROJECT_NUMER=$(gcloud projects describe ${PROJECT_ID} \
+      --format="value(projectNumber)")

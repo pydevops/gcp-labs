@@ -1,0 +1,4 @@
+REGION=us-west1
+ZONE=us-west1-b
+NETWORK=custom-vpc-1
+SUBNET=subnet-oregon
