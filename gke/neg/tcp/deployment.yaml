@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+spec:
+  selector:
+    matchLabels:
+      purpose: demo
+      topic: standalone-neg
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        purpose: demo
+        topic: standalone-neg
+    spec:
+      containers:
+      - name: hello
+        image: debian:9
+        command: ["/bin/bash"]
+        args:
+        - "-c"
+        - "apt-get update && apt-get install -y netcat && while true; do echo Hello TCP | nc -l -p 50000; done"

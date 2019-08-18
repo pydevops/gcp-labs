@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: cdn-how-to
+  name: my-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "cdn-how-to-address"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: my-service
+          servicePort: 80

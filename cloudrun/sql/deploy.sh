@@ -11,5 +11,5 @@ gcloud beta run deploy visitor \
 	--platform managed \
 	--region us-central1 \
 	--set-env-vars "TARGET=CloudSQL,host=mydev-238905:us-central1:demo,db=test,user=app,password=passw0rd" \
-	--service-account sql-sa@${PROJECT}.iam.gserviceaccount.com \
 	--add-cloudsql-instances demo
+#--service-account sql-sa@${PROJECT}.iam.gserviceaccount.com \

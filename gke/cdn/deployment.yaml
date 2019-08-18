@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: cdn-how-to
+  name: my-deployment
+spec:
+  selector:
+    matchLabels:
+      purpose: demonstrate-cdn
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        purpose: demonstrate-cdn
+    spec:
+      containers:
+      - name: echo-amd64
+        image: gcr.io/google-samples/hello-app-cdn:1.0
