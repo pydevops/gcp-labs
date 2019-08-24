@@ -1,0 +1,9 @@
+apiVersion: sql.cnrm.cloud.google.com/v1alpha3
+kind: SQLUser
+metadata:
+  name: storedb-user
+spec:
+  instanceRef:
+    name: storedb-instance-001
+  host: "%"
+  password: Password@123
