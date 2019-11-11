@@ -8,7 +8,7 @@
         },
         "condition": {
           "age": 30,
-          "matchesStorageClass": ["STANDARD"]
+          "matchesStorageClass": ["STANDARD","REGIONAL"]
         }
       },
       {
