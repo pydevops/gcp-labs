@@ -49,5 +49,7 @@ if [ -z "${PROJECT_ID}" ]
 fi
 
 # set PROJECT_NUMBER
-PROJECT_NUMER=$(gcloud projects describe ${PROJECT_ID} \
+PROJECT_NUMBER=$(gcloud projects describe ${PROJECT_ID} \
       --format="value(projectNumber)")
+#PROJECT_NUMBER="$(gcloud projects describe ${PROJECT_ID} --format='get(projectNumber)')"
+#PROJECT_NUMBER=$(gcloud projects list --filter="$PROJECT" --format="value(PROJECT_NUMBER)" --project=$PROJECT)

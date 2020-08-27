@@ -1,0 +1,5 @@
+REGION=us-west1
+ZONE=us-west1-a
+NETWORK=default
+SUBNET=default
+PROJECT=$PROJECT_ID
