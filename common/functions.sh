@@ -41,15 +41,21 @@ enable_project_api() {
   gcloud services enable "${2}" --project "${1}"
 }
 
-
 # set PROJECT_ID
-PROJECT_ID=$(gcloud config list project --format 'value(core.project)')
+export PROJECT_ID=$(gcloud config list project --format 'value(core.project)')
+# export PROJECT_ID=$(gcloud config get-value project)
+
 if [ -z "${PROJECT_ID}" ]
   then echo >&2 "I require default project is set but it's not. Aborting."; exit 1;
 fi
 
 # set PROJECT_NUMBER
-PROJECT_NUMBER=$(gcloud projects describe ${PROJECT_ID} \
+export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT_ID} \
       --format="value(projectNumber)")
-#PROJECT_NUMBER="$(gcloud projects describe ${PROJECT_ID} --format='get(projectNumber)')"
+# PROJECT_NUMBER=$(gcloud projects describe $PROJECT_ID --format="value(projectNumber)")
 #PROJECT_NUMBER=$(gcloud projects list --filter="$PROJECT" --format="value(PROJECT_NUMBER)" --project=$PROJECT)
+
+export PROJECT_USER=$(gcloud config get-value core/account) # set current user
+export IDNS=${PROJECT_ID}.svc.id.goog # workflow identity domain
+
+
