@@ -11,7 +11,8 @@ export PROJECT_NUMBER=$(gcloud projects describe $PROJECT_ID --format="value(pro
 ###########################################
 
 export IDNS=${PROJECT_ID}.svc.id.goog # workflow identity domain
-export MAN_CIDR=135.0.150.138/32
+export MAN_CIDR="135.0.150.138/32"
+export MASTER_CIDR="172.16.0.0/28"
 
 export GCP_REGION="us-central1" # CHANGEME (OPT)
 export GCP_ZONE="us-central1-a" # CHANGEME (OPT)

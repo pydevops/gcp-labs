@@ -21,9 +21,10 @@ gcloud beta container clusters create $CLUSTER_NAME \
     --machine-type $MACHINE_TYPE \
     --enable-ip-alias  \
     --enable-master-authorized-networks \
-    --master-authorized-networks "$MAN_CIDR"
-   # --enable-private-nodes
-
+    --master-authorized-networks "$MAN_CIDR" \
+    --enable-private-nodes \
+    --master-ipv4-cidr "$MASTER_CIDR"
+    
 export KUBECONFIG=$PWD/kubeconfig
 gcloud container clusters get-credentials $CLUSTER_NAME --zone $GCP_ZONE 
 
