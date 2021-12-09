@@ -26,6 +26,9 @@ gcloud beta container clusters create $CLUSTER_NAME \
     --master-ipv4-cidr "$MASTER_CIDR" \
     --enable-shielded-nodes \
     --shielded-secure-boot \
+    --workload-pool=$IDNS \
+    --addons ConfigConnector \
+    --enable-stackdriver-kubernetes \
     --preemptible
     
 export KUBECONFIG=$PWD/kubeconfig
