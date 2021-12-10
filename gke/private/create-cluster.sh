@@ -27,10 +27,11 @@ gcloud beta container clusters create $CLUSTER_NAME \
     --enable-shielded-nodes \
     --shielded-secure-boot \
     --workload-pool=$IDNS \
-    --addons ConfigConnector \
-    --enable-stackdriver-kubernetes \
     --preemptible
-    
+
+#--addons ConfigConnector \
+# --enable-stackdriver-kubernetes \
+ 
 export KUBECONFIG=$PWD/kubeconfig
 gcloud container clusters get-credentials $CLUSTER_NAME --zone $GCP_ZONE 
 
