@@ -17,7 +17,7 @@ gcloud beta container clusters create $CLUSTER_NAME \
     --project $PROJECT_ID \
     --zone $GCP_ZONE \
     --release-channel "regular" \
-    --num-nodes "1" \
+    --num-nodes "2" \
     --machine-type $MACHINE_TYPE \
     --enable-ip-alias  \
     --enable-master-authorized-networks \
