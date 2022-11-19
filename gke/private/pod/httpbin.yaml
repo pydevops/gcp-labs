@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: foo
+  namespace: default
+spec:
+  containers:
+    - name: app
+      image: docker.io/kennethreitz/httpbin
+      ports:
+        - containerPort: 80
+      resources:
+        limits:
+          memory: "256Mi"
+    - name: sidecar
+      image: curlimages/curl
+      command: ["/bin/sleep", "3650d"]
+      resources:
+        limits:
+          memory: "128Mi"
